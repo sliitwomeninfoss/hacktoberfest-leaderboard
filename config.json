@@ -1,0 +1,19 @@
+{
+  "event": "Hacktoberfest 2026",
+  "repos": ["sliitwomeninfoss/sliitwif"],
+  "start": "2026-10-01T00:00:00+05:30",
+  "end": "2026-10-31T23:59:59+05:30",
+  "exclude": [],
+  "excludeLabels": ["invalid", "spam"],
+  "ignoreFiles": ["package-lock.json", "yarn.lock", "pnpm-lock.yaml", "*.min.js", "*.map"],
+  "points": {
+    "mergedPr": 10,
+    "maxSizeBonus": 5,
+    "commitWeight": 3,
+    "issueResolved": 6,
+    "issueReported": 2,
+    "maxIssuesReported": 5,
+    "review": 2,
+    "maxReviews": 10
+  }
+}

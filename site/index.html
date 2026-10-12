@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commit or Treat | SLIIT WiF Hacktoberfest</title>
+  <meta name="description" content="Hacktoberfest leaderboard for SLIIT Women in FOSS open source contributions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="sky" aria-hidden="true">
+    <svg class="moon" viewBox="0 0 16 16" shape-rendering="crispEdges">
+      <path fill="currentColor" d="M5 0h6v1h2v1h1v1h1v2h1v6h-1v2h-1v1h-1v1h-2v1H5v-1H3v-1H2v-1H1v-2H0V5h1V3h1V2h1V1h2z"/>
+      <path fill="var(--night)" opacity=".18" d="M4 4h2v2H4zM10 9h3v2h-3zM6 11h2v1H6zM11 3h1v1h-1z"/>
+    </svg>
+    <svg class="bat bat-1" viewBox="0 0 32 13"><path fill="currentColor" d="M14.5 4L14.5 1L15.5 3H16.5L17.5 1L17.5 4C21 2 26 1 31 3C29 4 28 6 28 8C26 7 24 7 23 9C22 7 20 7 19 9L16 12L13 9C12 7 10 7 9 9C8 7 6 7 4 8C4 6 3 4 1 3C6 1 11 2 14.5 4Z"/></svg>
+    <svg class="bat bat-2" viewBox="0 0 32 13"><path fill="currentColor" d="M14.5 4L14.5 1L15.5 3H16.5L17.5 1L17.5 4C21 2 26 1 31 3C29 4 28 6 28 8C26 7 24 7 23 9C22 7 20 7 19 9L16 12L13 9C12 7 10 7 9 9C8 7 6 7 4 8C4 6 3 4 1 3C6 1 11 2 14.5 4Z"/></svg>
+    <svg class="bat bat-3" viewBox="0 0 32 13"><path fill="currentColor" d="M14.5 4L14.5 1L15.5 3H16.5L17.5 1L17.5 4C21 2 26 1 31 3C29 4 28 6 28 8C26 7 24 7 23 9C22 7 20 7 19 9L16 12L13 9C12 7 10 7 9 9C8 7 6 7 4 8C4 6 3 4 1 3C6 1 11 2 14.5 4Z"/></svg>
+  </div>
+
+  <header class="topbar wrap">
+    <a class="brand" href="https://github.com/sliitwomeninfoss">SLIIT WOMEN IN FOSS</a>
+    <span class="clock" id="clock">HACKTOBERFEST</span>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <p class="eyebrow" id="event-name">Hacktoberfest 2026</p>
+      <h1>Commit<br><span class="or">or</span> Treat<span class="dot">.</span></h1>
+      <p class="lede">
+        The leaderboard for open source contributions to
+        <a id="repo-link" href="https://github.com/sliitwomeninfoss/sliitwif">sliitwomeninfoss/sliitwif</a>.
+        Merge PRs, close issues, review code, and climb out of the grave.
+      </p>
+      <dl class="stats" id="stats">
+        <div><dt>Contributors</dt><dd data-stat="contributors">0</dd></div>
+        <div><dt>PRs merged</dt><dd data-stat="prs">0</dd></div>
+        <div><dt>Issues closed</dt><dd data-stat="issues">0</dd></div>
+        <div><dt>Last updated</dt><dd data-stat="updated">-</dd></div>
+      </dl>
+    </section>
+
+    <section class="graveyard" id="podium" aria-label="Top three"></section>
+
+    <section class="board" aria-labelledby="board-title">
+      <div class="section-head">
+        <h2 id="board-title">The Leaderboard</h2>
+        <p>Select a row to see the point breakdown.</p>
+      </div>
+      <ol class="rows" id="rows"></ol>
+      <div class="empty" id="empty" hidden>
+        <p class="empty-title">The graveyard is quiet.</p>
+        <p>No merged contributions yet this October. Be the first to rise.</p>
+        <a class="btn" id="empty-cta" href="https://github.com/sliitwomeninfoss/sliitwif/issues">Find an issue</a>
+      </div>
+    </section>
+
+    <section class="rules" aria-labelledby="rules-title">
+      <div class="section-head">
+        <h2 id="rules-title">How points work</h2>
+        <p>Quality beats quantity. Volume is dampened so fifty tiny commits never outrun one solid PR.</p>
+      </div>
+      <div class="rule-grid" id="rule-grid"></div>
+      <pre class="formula" id="formula"></pre>
+    </section>
+
+    <section class="steps" aria-labelledby="steps-title">
+      <div class="section-head">
+        <h2 id="steps-title">Claim your tombstone</h2>
+      </div>
+      <ol class="step-list">
+        <li><span>01</span><p>Register at <a href="https://hacktoberfest.com">hacktoberfest.com</a> with your GitHub account.</p></li>
+        <li><span>02</span><p>Pick an open issue in <a class="repo-anchor" href="https://github.com/sliitwomeninfoss/sliitwif/issues">the repo</a> and comment to get it assigned.</p></li>
+        <li><span>03</span><p>Open a pull request that links the issue with <code>Closes #123</code>.</p></li>
+        <li><span>04</span><p>Once it's merged, your score appears here within six hours.</p></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <p>Built by SLIIT Women in FOSS. Scores refresh every six hours from the GitHub API.</p>
+    <a href="https://github.com/sliitwomeninfoss/hacktoberfest-leaderboard">Source</a>
+  </footer>
+
+  <div class="fog" aria-hidden="true"></div>
+  <script src="app.js"></script>
+</body>
+</html>
