@@ -29,9 +29,10 @@
   const end = new Date(data.end);
   const start = new Date(data.start);
   const now = new Date();
+  const startLabel = start.toLocaleDateString("en-US", { month: "short", day: "numeric" });
   const daysLeft = Math.ceil((end - now) / 86400000);
   $("#clock").textContent =
-    now < start ? "OPENS OCT 1" : now > end ? "THE HUNT IS OVER" : `${daysLeft} ${daysLeft === 1 ? "NIGHT" : "NIGHTS"} LEFT`;
+    now < start ? `OPENS ${startLabel.toUpperCase()}` : now > end ? "THE HUNT IS OVER" : `${daysLeft} ${daysLeft === 1 ? "NIGHT" : "NIGHTS"} LEFT`;
 
   // stats
   const sum = (key) => list.reduce((n, c) => n + c[key], 0);
@@ -115,8 +116,8 @@
   // rules
   const p = data.points;
   const rules = [
-    [p.mergedPr, "Merged PR", "Every pull request merged during October."],
-    [`+${p.maxSizeBonus}`, "Size bonus", "Up to 5 per PR on a log scale. Lockfiles and minified files don't count."],
+    [p.mergedPr, "Merged PR", `Every pull request merged from ${startLabel} onwards.`],
+    [`+${p.maxSizeBonus}`, "Size bonus", `Up to ${p.maxSizeBonus} per PR on a log scale, so big diffs barely beat small ones. Lockfiles don't count.`],
     [`${p.commitWeight}√n`, "Commits", "Square-root dampened: 4 commits = 6 pts, 100 commits = 30 pts."],
     [p.issueResolved, "Issue resolved", "Each issue your merged PR closes with \"Closes #n\"."],
     [p.issueReported, "Issue reported", `Issues you open that get completed. Max ${p.maxIssuesReported}.`],
@@ -128,7 +129,7 @@
 
   $("#formula").textContent =
     `score = ${p.mergedPr} x PRs\n` +
-    `      + sum( min(${p.maxSizeBonus}, log2(1 + lines) / 2) )   per PR\n` +
+    `      + sum( min(${p.maxSizeBonus}, log2(1 + lines) / ${p.sizeDivisor}) )   per PR\n` +
     `      + ${p.commitWeight} x sqrt(commits)\n` +
     `      + ${p.issueResolved} x issues resolved\n` +
     `      + ${p.issueReported} x min(${p.maxIssuesReported}, issues reported)\n` +

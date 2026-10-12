@@ -1,17 +1,17 @@
 # Commit or Treat
 
-Hacktoberfest leaderboard for [SLIIT Women in FOSS](https://github.com/sliitwomeninfoss). It scores October contributions to the repos listed in `config.json` and publishes a static page to GitHub Pages.
+Hacktoberfest leaderboard for [SLIIT Women in FOSS](https://github.com/sliitwomeninfoss). It scores contributions made from **12 October 2026** onwards (earlier work doesn't count) to the repos listed in `config.json` and publishes a static page to GitHub Pages.
 
 **Live:** https://sliitwomeninfoss.github.io/hacktoberfest-leaderboard/
 
 ## How scoring works
 
-Only work that lands counts: merged PRs, issues those PRs close, completed issues, and reviews on merged PRs. Volume is dampened so many small commits can't outrank one solid PR.
+Only work that lands counts, and the PR or issue itself must be opened on or after the start date: merged PRs, issues those PRs close, completed issues, and reviews on merged PRs. Volume is dampened so many small commits can't outrank one solid PR.
 
 | Activity | Points |
 |---|---|
 | Merged PR | 10 each |
-| PR size bonus | `min(5, log2(1 + lines changed) / 2)` per PR. Lockfiles and minified files are ignored |
+| PR size bonus | `min(2, log2(1 + lines changed) / 5)` per PR (10 lines = 0.7, 100 = 1.3, 1000+ = 2). Lockfiles and minified files are ignored |
 | Commits (in merged PRs) | `3 x sqrt(total commits)` |
 | Issue resolved (closed by your merged PR via `Closes #n`) | 6 each |
 | Issue reported (opened by you, closed as completed) | 2 each, max 5 issues |
@@ -19,7 +19,7 @@ Only work that lands counts: merged PRs, issues those PRs close, completed issue
 
 ```
 score = 10 x PRs
-      + sum( min(5, log2(1 + lines) / 2) )   per PR
+      + sum( min(2, log2(1 + lines) / 5) )   per PR
       + 3 x sqrt(commits)
       + 6 x issues resolved
       + 2 x min(5, issues reported)

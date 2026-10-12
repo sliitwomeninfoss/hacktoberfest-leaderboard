@@ -47,7 +47,7 @@ async function searchAll(q, fragment) {
 }
 
 const PR_FIELDS = `... on PullRequest {
-  number url mergedAt
+  number url createdAt mergedAt
   author { login avatarUrl url __typename }
   labels(first: 20) { nodes { name } }
   commits { totalCount }
@@ -98,7 +98,8 @@ for (const repo of config.repos) {
   );
 
   for (const pr of prs) {
-    if (!inWindow(pr.mergedAt) || hasExcludedLabel(pr)) continue;
+    // PRs opened before the start date are past work, even if merged later
+    if (!inWindow(pr.createdAt) || !inWindow(pr.mergedAt) || hasExcludedLabel(pr)) continue;
     const p = person(pr.author);
     if (p) {
       const lines = pr.files.nodes
@@ -107,8 +108,8 @@ for (const repo of config.repos) {
       p.prs += 1;
       p.commits += pr.commits.totalCount;
       p.linesChanged += lines;
-      // log scale: ~10 lines = 1.7, ~100 lines = 3.3, 1000+ lines = capped
-      p.sizeBonus += Math.min(P.maxSizeBonus, Math.log2(1 + lines) / 2);
+      // log scale: ~10 lines = 0.7, ~100 lines = 1.3, 1000+ lines = capped at 2
+      p.sizeBonus += Math.min(P.maxSizeBonus, Math.log2(1 + lines) / P.sizeDivisor);
       for (const issue of pr.closingIssuesReferences.nodes) {
         p.issuesResolved.add(`${issue.repository.nameWithOwner}#${issue.number}`);
       }
