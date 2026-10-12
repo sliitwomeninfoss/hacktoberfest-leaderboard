@@ -127,11 +127,4 @@
     .map(([v, t, d]) => `<div class="rule"><div class="val">${esc(v)}</div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`)
     .join("");
 
-  $("#formula").textContent =
-    `score = ${p.mergedPr} x PRs\n` +
-    `      + sum( min(${p.maxSizeBonus}, log2(1 + lines) / ${p.sizeDivisor}) )   per PR\n` +
-    `      + ${p.commitWeight} x sqrt(commits)\n` +
-    `      + ${p.issueResolved} x issues resolved\n` +
-    `      + ${p.issueReported} x min(${p.maxIssuesReported}, issues reported)\n` +
-    `      + ${p.review} x min(${p.maxReviews}, PRs reviewed)`;
 })();
